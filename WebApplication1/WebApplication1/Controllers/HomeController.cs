@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        [OutputCache(Duration = 60)]
         public ActionResult Index()
         {
             return View();
@@ -26,5 +28,16 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+        public ActionResult ListArticle()
+        {
+            var Arts = new ArtEntities();
+
+            return View(Arts.Article.ToList());
+        }
+        public ActionResult AddComm()
+        {
+            return View();
+        }
+
     }
 }
